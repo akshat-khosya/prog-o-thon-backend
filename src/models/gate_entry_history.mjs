@@ -1,51 +1,47 @@
 import mongoose from "mongoose";
 
 
-const feeReceiptSchema = new mongoose.Schema({
+const HistorySchema = new mongoose.Schema({
     rollNo:{
         type: String,
         required: true
     },
-    receiptNo:{
-        type:String,
-        unique:true,
-        required: true
-    },
-    date:{
+    outgoingTime:{
         type: String,
         required: true
     },
-    amount:{
+    incomingTime:{
         type: String,
         required: true
     },
-    tutionFee:{
+    purpose:{
         type:String,
         required: true
     },
-    name:{
-        type: String,
-        required: true
-    
-    },
-    branch:{
+    destination:{
         type: String,
         required: true
     },
-    semester:{
+    type:{
         type: String,
+        default:"0",
         required: true
+        // 0 means one day and 1 days means leaves;
     },
-    year:{
+    url:{
         type: String,
         required: true
+
     },
-    paidThrough:{
-        type: String,
-        required: true
+    out:{
+        type:Boolean,
+        default:true,
+        required:true
+        // if out ture
     }
+    
 },{timestamps:true});
 
-const FeeReceipt = mongoose.model("FeeReceipt", feeReceiptSchema);
+const History = mongoose.model("History", HistorySchema);
 
-export default FeeReceipt;
+export default History;

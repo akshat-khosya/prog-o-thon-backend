@@ -1,4 +1,4 @@
-import { feeSearchQuery } from "../repo/fee_receipt.repo.mjs";
+import { feeSearchQuery, feeSearchQueryAll } from "../repo/fee_receipt.repo.mjs";
 import { createFeeRecipt,sendEmailRecipt } from "../service/fee_receipt.service.mjs";
 
 const createFeeReciptData = async (req,res)=>{
@@ -58,4 +58,32 @@ const createFeeReciptData = async (req,res)=>{
 
 }
 
-export {createFeeReciptData};
+const getFeeReciptData = async (req,res)=>{
+    const {id,receiptNo,rollNo,semester} = req.params;
+    let query = {};
+    if(id){
+        query._id = id;
+    }
+    if(receiptNo){
+        query.receiptNo = receiptNo;
+    }
+    if(rollNo){
+        query.rollNo = rollNo;
+    }
+    if(semester){
+        query.semester = semester;
+    }
+    let feeReciptData = await feeSearchQuery(query);
+    if(feeReciptData){
+        return res.status(200).json({message:"Data found",data:feeReciptData});
+    }
+    else{
+        return res.status(400).json({message:"No data found"});
+    }
+}
+
+const getAllFeeReciptData = async (req,res)=>{
+    const data = await feeSearchQueryAll({});
+    return res.status(200).json({message:"Data found",data:data});
+}
+export {createFeeReciptData,getFeeReciptData,getAllFeeReciptData};

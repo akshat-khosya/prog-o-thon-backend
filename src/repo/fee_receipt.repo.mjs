@@ -14,7 +14,17 @@ const feeSearchQuery = async (query) => {
         throw new Error(error);
     }
 };
-
+const feeSearchQueryAll = async (query)=>{
+    try {
+        const data = await FeeReceipt.find(query);
+        if(data.length===0){
+            return false;
+        }
+        return data;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
 const feeSaveData = async (data) => {
     try {
         
@@ -27,4 +37,4 @@ const feeSaveData = async (data) => {
     }
 }
 
-export { feeSearchQuery, feeSaveData };
+export { feeSearchQuery, feeSaveData,feeSearchQueryAll };
