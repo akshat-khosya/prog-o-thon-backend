@@ -6,8 +6,11 @@ class Config {
         env.config();
         this._config = {
             port: process.env.P_PORT,
-            db_uri: process.env.DB_URI
-    
+            db_uri: process.env.DB_URI,
+            googleId:process.env.ID,
+            googleSecret:process.env.SECRET,
+            refreshToken:process.env.REFRESH_TOKEN,
+            email:"20106@iiitu.ac.in"
         }
     }
     get(key){
