@@ -37,7 +37,7 @@ const HistorySchema = new mongoose.Schema({
         type:Boolean,
         default:true,
         required:true
-        // if out ture
+        // if out true
     }
     
 },{timestamps:true});
