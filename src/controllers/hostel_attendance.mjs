@@ -1,5 +1,6 @@
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
+import { searchAllQueryAttendance } from "../repo/hostel_attendance.repo.mjs";
 const __fileName = fileURLToPath(import.meta.url);
 const __dirname = dirname(__fileName);
 const attendanceHandler = async (req,res)=>{
@@ -8,4 +9,8 @@ const attendanceHandler = async (req,res)=>{
     res.send("File uploaded successfully");
 }
 
-export {attendanceHandler};
+const getAllStudentAttendance = async (req,res)=>{
+    const data = await searchAllQueryAttendance({});
+    return res.status(200).join(data);
+}
+export {attendanceHandler,getAllStudentAttendance};
