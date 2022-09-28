@@ -14,16 +14,16 @@ const sessionSchema = new mongoose.Schema({
     },
     purpose:{
         type:String,
-        required: true
+        
     },
     destination:{
         type: String,
-        required: true
+        
     },
     type:{
         type: String,
         default:"0",
-        required: true
+        
         // 0 means one day and 1 days means leaves;
     },
     url:{

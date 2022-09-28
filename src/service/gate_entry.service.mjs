@@ -1,5 +1,5 @@
 import { findAllQuery, findOneQueryPurpose } from "../repo/gate_entry.mjs";
-import { findOneQueryHistory } from "../repo/gate_entry_history.repo.mjs";
+import { createHistoryQuery, findOneQueryHistory, updateHistoryQuery } from "../repo/gate_entry_history.repo.mjs";
 import { createSessionQuery, deleteSessionQuery, findOneQuerySession } from "../repo/gate_entry_session.repo.mjs";
 
 
@@ -63,4 +63,28 @@ const validateForQr = async (rollNo, id) => {
 
 
 }
-export { checkForPurpose, validateForQr };
+
+const validateForSessionQrCode = async(data)=>{
+    if(data.historyId){
+        const time = new Date();
+        const updatedHistory = await updateHistoryQuery({_id:data.historyId},{incomingTime:time,out:false});
+        const deleteSession = await deleteSessionQuery({_id:data._id});
+        return true ;
+    }
+    let historyData={
+        rollNo:data.rollNo,
+        purpose:data.purpose,
+        destination:data.destination,
+        type:data.type,
+        outgoingTime:new Date(),
+        out:true,
+    
+    };
+    if(data.url){
+        historyData[url]=data.url;
+    }
+    const newHistory = await createHistoryQuery(historyData);
+    return true;
+    
+}
+export { checkForPurpose, validateForQr,validateForSessionQrCode };

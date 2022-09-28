@@ -12,7 +12,7 @@ const HistorySchema = new mongoose.Schema({
     },
     incomingTime:{
         type: String,
-        required: true
+        
     },
     purpose:{
         type:String,
@@ -30,7 +30,7 @@ const HistorySchema = new mongoose.Schema({
     },
     url:{
         type: String,
-        required: true
+        
 
     },
     out:{
