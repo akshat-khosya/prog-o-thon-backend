@@ -18,6 +18,14 @@ const findAllQuery = async (data) => {
         throw new Error(error);
     }
 };
+const findOneQueryPurpose = async (data) => {
+
+    try {
+        return await savedPurpose.findOne(data);
+    } catch (error) {
+        throw new Error(error);
+    }
+};
 
 const deletePurpose = async (id) => {
     try {
@@ -36,4 +44,4 @@ const updatePurpose = async (query,data) => {
         throw new Error(error);
     }
 };
-export { createPurpose, findAllQuery,deletePurpose,updatePurpose };
+export { createPurpose, findAllQuery,deletePurpose,updatePurpose,findOneQueryPurpose };

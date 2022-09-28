@@ -28,6 +28,10 @@ const sessionSchema = new mongoose.Schema({
     },
     url:{
         type: String,
+    },
+    sentTime:{
+        type:Date,
+        required:true
     }
     
 },{timestamps:true});
