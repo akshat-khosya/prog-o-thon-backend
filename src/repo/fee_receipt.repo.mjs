@@ -2,10 +2,10 @@ import FeeReceipt from '../models/fee_receipt.model.mjs';
 
 const feeSearchQuery = async (query) => {
     try {
+        console.log(query);
         const data = await FeeReceipt.findOne(query);
-        
+        console.log(data);
         if (!data) {
-          
             return false;
         }
         return data;

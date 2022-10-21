@@ -20,7 +20,7 @@ const sendEmailRecipt = async (data) => {
     
     const feeReceipt = await feeSearchQuery({ receiptNo: data.receiptNo });
    
-    const link = `http://localhost:3000/fee-receipt/download/${feeReceipt._id.toString()}/${data.receiptNo}/${data.rollNo}/${data.semester}`;
+    const link = `http://192.168.137.135:3000/fee-receipt/download/${feeReceipt._id.toString()}/${data.receiptNo}/${data.rollNo}/${data.semester}`;
     await sendMail(email, "Fee Recipt", link);
     return true;
 }

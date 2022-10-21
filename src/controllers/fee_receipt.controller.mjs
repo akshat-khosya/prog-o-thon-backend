@@ -74,6 +74,7 @@ const getFeeReciptData = async (req,res)=>{
         query.semester = semester;
     }
     let feeReciptData = await feeSearchQuery(query);
+    console.log(feeReciptData);
     if(feeReciptData){
         return res.status(200).json({message:"Data found",data:feeReciptData});
     }

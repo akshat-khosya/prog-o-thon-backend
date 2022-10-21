@@ -1,4 +1,4 @@
-import { createPurpose, deletePurpose } from "../repo/gate_entry.mjs";
+import { createPurpose, deletePurpose, findAllQuery } from "../repo/gate_entry.mjs";
 import { findAllQueryHistory, findOneQueryHistory } from "../repo/gate_entry_history.repo.mjs";
 import { createSessionQuery, deleteSessionQuery, findOneQuerySession } from "../repo/gate_entry_session.repo.mjs";
 import { checkForPurpose, validateForQr, validateForSessionQrCode } from "../service/gate_entry.service.mjs";
@@ -18,7 +18,11 @@ const deletePurposeHandeler = async (req, res) => {
     const purpose = await deletePurpose(req.params.id);
     return res.status(200).json({ message: "Purpose deleted successfully", purpose });
 }
-
+const getSavedPurpose = async (req,res)=>{
+    const rollNo = req.params.rollNo;
+    const data = await findAllQuery({rollNo:rollNo});
+    return res.status(200).json({message:"Saved purpose",data});
+}
 // const updatePurposeHandeler = async (req,res) =>{
 //     const validatePurpose = await checkForPurpose(req.body);
 //     if(!validatePurpose){
@@ -90,4 +94,4 @@ const incomingQrCodeGenrator = async(req,res)=>{
     const newSession = await createSessionQuery({rollNo:rollNo,sentTime:new Date(),historyId:history._id});
     return res.status(200).json({message:"QR code genrated successfully",id:newSession._id});
 }
-export { cratePurposeHandeler, deletePurposeHandeler, genrateQrHandler, getAllUserHistory,getUserHistory,scanQrCodeHandler,incomingQrCodeGenrator };
+export { cratePurposeHandeler, deletePurposeHandeler, genrateQrHandler, getAllUserHistory,getUserHistory,scanQrCodeHandler,incomingQrCodeGenrator,getSavedPurpose };
