@@ -1,7 +1,11 @@
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
+<<<<<<< HEAD
 import * as child from "child_process";
 import { createAttendance, searchQueryAttendance } from "../repo/hostel_attendance.repo.mjs";
+=======
+import { searchAllQueryAttendance } from "../repo/hostel_attendance.repo.mjs";
+>>>>>>> d55b6458ea1a59ca81c8184add5c8ef1735cfa4e
 const __fileName = fileURLToPath(import.meta.url);
 const __dirname = dirname(__fileName);
 const attendanceHandler = async (req,res)=>{
@@ -37,6 +41,7 @@ const attendanceHandler = async (req,res)=>{
     
 }
 
+<<<<<<< HEAD
 const getAllStudentAttedance = async (req,res)=>{
     const attendance = await searchQueryAttendance({});
     return res.status(200).json({attendance});
@@ -48,3 +53,10 @@ const getStudentAttendance = async (req,res)=>{
     return res.status(200).json({attendance});
 }
 export {attendanceHandler,getAllStudentAttedance,getStudentAttendance};
+=======
+const getAllStudentAttendance = async (req,res)=>{
+    const data = await searchAllQueryAttendance({});
+    return res.status(200).join(data);
+}
+export {attendanceHandler,getAllStudentAttendance};
+>>>>>>> d55b6458ea1a59ca81c8184add5c8ef1735cfa4e
